@@ -3,6 +3,7 @@ package com.yang.shequ.provider;
 import com.alibaba.fastjson.JSON;
 import com.yang.shequ.dto.AccessTokenDTO;
 import com.yang.shequ.dto.GithubUser;
+import com.yang.shequ.model.User;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
 
@@ -34,20 +35,26 @@ public class GithubProvider {
     }
 
     public GithubUser getUser(String accessToken){
-        OkHttpClient client = new OkHttpClient();
-        String url = "https://api.github.com/user?access_token=" + accessToken;
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-        try {
-            Response response = client.newCall(request).execute();
-            String string =  response.body().string();
-            GithubUser githubUser = JSON.parseObject(string, GithubUser.class);
-            return githubUser;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        GithubUser  githubUser = new GithubUser();
+        githubUser.setId((long) 999);
+        githubUser.setName("小强");
+        githubUser.setBio(accessToken);
+        return githubUser;
 
-        return  null;
+//        OkHttpClient client = new OkHttpClient();
+//        String url = "https://api.github.com/user?access_token=" + accessToken;
+//        Request request = new Request.Builder()
+//                .url(url)
+//                .build();
+//        try {
+//            Response response = client.newCall(request).execute();
+//            String string =  response.body().string();
+//            GithubUser githubUser = JSON.parseObject(string, GithubUser.class);
+//            return githubUser;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return  null;
     }
 }
