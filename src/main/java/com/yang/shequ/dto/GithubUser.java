@@ -5,6 +5,15 @@ package com.yang.shequ.dto;
  * @date 2020/4/24 9:52
  */
 public class GithubUser {
+    @Override
+    public String toString() {
+        return "GithubUser{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", bio='" + bio + '\'' +
+                '}';
+    }
+
     private String name;
     private Long id;
     private String bio;
